@@ -4,9 +4,18 @@ import 'package:flutter/widgets.dart';
 import 'package:tick_tac_toe_flutter/models/difficulty.enum.model.dart';
 
 class UserInput extends StatelessWidget {
-  const UserInput({Key? key, this.isEnabled = true}) : super(key: key);
+  const UserInput(
+      {Key? key,
+      this.isEnabled = true,
+      required this.onDifficultyChange,
+      required this.difficulty,
+      required this.onStartedChange})
+      : super(key: key);
 
   final bool isEnabled;
+  final Difficulty difficulty;
+  final Function(Difficulty diff) onDifficultyChange;
+  final Function(bool hasStared) onStartedChange;
 
   @override
   Widget build(BuildContext context) {
@@ -16,8 +25,13 @@ class UserInput extends StatelessWidget {
         children: [
           Expanded(
               child: DropdownButtonFormField(
-                  value: 2,
-                  onChanged: isEnabled ? (int? value) {} : null,
+                  value: difficulty.index,
+                  onChanged: isEnabled
+                      ? (int? value) {
+                          return onDifficultyChange(
+                              Difficulty.values[value ?? -1]);
+                        }
+                      : null,
                   decoration: const InputDecoration(labelText: 'Difficulty'),
                   validator: (int? value) {
                     if (value == null) {
@@ -31,12 +45,12 @@ class UserInput extends StatelessWidget {
                             child: Text(
                                 "${describeEnum(e)[0]}${describeEnum(e).substring(1).toLowerCase()}"),
                           ))
-                      .toList())
-          ),
-        ElevatedButton(
-          onPressed: () {},
-          child: const Text('Start')
-        )
+                      .toList())),
+          ElevatedButton(
+              onPressed: () {
+                onStartedChange(true);
+              },
+              child: const Text('Start'))
         ],
       ),
     ));
