@@ -1,3 +1,1 @@
-enum Player {
-  A, B
-}
+enum Player { Human, Computer }

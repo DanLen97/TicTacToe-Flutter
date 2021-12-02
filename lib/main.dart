@@ -10,18 +10,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: Scaffold(
-        appBar: AppBar(title: Text('Tic Tac Toe')),
-        body: Container(
-          margin: EdgeInsets.all(20),
-          child: GameWidget()
-        )
-      )
-    );
+        title: 'Flutter Demo',
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+        ),
+        home: Scaffold(
+            appBar: AppBar(title: Text('Unbeatable Tic-Tac-Toe')),
+            body: Container(margin: EdgeInsets.all(20), child: GameWidget())));
   }
 }
-
