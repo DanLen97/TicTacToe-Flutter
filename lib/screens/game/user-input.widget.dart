@@ -50,7 +50,7 @@ class UserInput extends StatelessWidget {
               onPressed: () {
                 onStartedChange(true);
               },
-              child: const Text('Start'))
+              child: Text('Start'))
         ],
       ),
     ));
