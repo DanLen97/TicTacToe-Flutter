@@ -6,22 +6,23 @@ import 'package:tick_tac_toe_flutter/models/gameboard.model.dart';
 
 class GameBoard extends StatelessWidget {
   const GameBoard(
-      {Key? key, required this.gameboard, required this.onTileClick})
+      {Key? key, required this.gameboard, required this.onTileClick, this.disabled = false })
       : super(key: key);
 
   final Gameboard gameboard;
+  final bool disabled;
 
   final Function(int tileIdx) onTileClick;
 
   Widget createTile(GameTile? tile, int idx) {
     return InkWell(
-        onTap: tile == null
+        onTap: tile == null && !disabled
             ? () {
                 onTileClick(idx);
               }
             : null,
         child: Container(
-            decoration: BoxDecoration(border: Border.all()),
+            decoration: BoxDecoration(border: Border.all(), borderRadius: BorderRadius.all(Radius.circular(5))),
             constraints: BoxConstraints(
                 maxHeight: 100, maxWidth: 100, minHeight: 100, minWidth: 100),
             child: tile != null
